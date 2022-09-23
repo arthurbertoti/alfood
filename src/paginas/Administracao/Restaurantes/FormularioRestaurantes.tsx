@@ -1,9 +1,9 @@
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Button, Typography, Container, Paper } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import IRestaurante from '../../interfaces/IRestaurante';
+import IRestaurante from '../../../interfaces/IRestaurante';
 import { Box } from '@mui/system';
-import http from '../../http';
+import http from '../../../http';
 
 const FormularioRestaurantes = () => {
 
@@ -39,15 +39,20 @@ const FormularioRestaurantes = () => {
 
     }
     return (
+
         <Box sx={{
             display: 'flex',
-            flexDirections: 'column',
-            justifyContent:"center"
+            flexDirection: 'column',
+            alignItems: 'center',
+            flexGrow: 1
         }}>
-            <Box component="form" onSubmit={aoSubmeterForm}>
-                <Typography component="h1" variant="h6">
-                    Formulário de Restaurantes
-                </Typography>
+            <Typography component="h1" variant="h6">
+                Formulário de Restaurantes
+            </Typography>
+            <Box
+                component="form"
+                sx={{ width: '100%' }}
+                onSubmit={aoSubmeterForm}>
                 <TextField
                     value={nomeRestaurante}
                     onChange={evento => setNomeRestaurante(evento.target.value)}

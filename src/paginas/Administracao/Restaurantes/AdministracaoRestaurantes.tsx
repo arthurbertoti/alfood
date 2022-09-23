@@ -1,8 +1,8 @@
-import IRestaurante from "../../interfaces/IRestaurante";
+import IRestaurante from "../../../interfaces/IRestaurante";
 import { useEffect, useState } from 'react';
 import { Paper, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import http from "../../http";
+import http from "../../../http";
 
 const AdministracaoRestaurantes = () => {
 
@@ -10,18 +10,18 @@ const AdministracaoRestaurantes = () => {
 
     useEffect(() => {
         http.get<IRestaurante[]>('restaurantes/')
-        .then(resposta => setRestaurantes(resposta.data))
+            .then(resposta => setRestaurantes(resposta.data))
     }, [])
-    
+
     const excluir = (restauranteAhSerExcluido: IRestaurante) => {
         http.delete(`restaurantes/${restauranteAhSerExcluido.id}/`)
-        .then(() => {
-            const listaRestaurante = restaurante.filter(restaurante => restaurante.id !== restauranteAhSerExcluido.id)
-            setRestaurantes([ ...listaRestaurante])
+            .then(() => {
+                const listaRestaurante = restaurante.filter(restaurante => restaurante.id !== restauranteAhSerExcluido.id)
+                setRestaurantes([...listaRestaurante])
 
-        })
+            })
     }
-    
+
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -48,10 +48,10 @@ const AdministracaoRestaurantes = () => {
                                 [ <Link to={`/admin/restaurantes/${restaurante.id}`}>editar</Link>]
                             </TableCell>
                             <TableCell>
-                                <Button 
-                                variant="outlined" 
-                                color="error"
-                                onClick={() => excluir(restaurante)}
+                                <Button
+                                    variant="outlined"
+                                    color="error"
+                                    onClick={() => excluir(restaurante)}
                                 >
                                     Excluir
                                 </Button>
